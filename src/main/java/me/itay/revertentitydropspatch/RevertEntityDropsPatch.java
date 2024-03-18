@@ -9,7 +9,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -37,7 +36,6 @@ public class RevertEntityDropsPatch extends JavaPlugin implements Listener {
             for (ItemStack itemStack : droppedItems) {
                 // Spawn the dropped item at the death location
                 Item item = deathLocation.getWorld().dropItemNaturally(deathLocation, itemStack);
-                item.setMetadata("playerDeathDrop", new FixedMetadataValue(this, true));
                 item.setPickupDelay(40); // Set pickup delay to prevent immediate pickup by players
             }
         }, 1);
